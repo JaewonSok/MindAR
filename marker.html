@@ -1,0 +1,84 @@
+<!-- import aframe and then ar.js with image tracking / location based features -->
+<!-- A-Frame -->
+<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+<!-- AR.js -->
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+<!-- Extras -->
+<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+<!-- <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script> -->
+<!-- Remote Debugging -->
+<script data-consolejs-channel="43507319-75a7-36fc-99e5-32f3cedabbb7"
+  src="https://remotejs.com/agent/agent.js"></script>
+
+<!-- Ammo Physics -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/MozillaReality/ammo.js@8bbc0ea/builds/ammo.wasm.js"></script> -->
+
+<!-- A-Frame Physics -->
+<!-- <script src="./dist/aframe-physics-system.js"></script> -->
+
+<!-- Remote Debugging -->
+<script data-consolejs-channel="43507319-75a7-36fc-99e5-32f3cedabbb7"
+  src="https://remotejs.com/agent/agent.js"></script>
+
+<!-- Game Logic -->
+<script src="./game.js"></script>
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
+
+<body style="margin : 0px; overflow: hidden;">
+  <!-- minimal loader shown until image descriptors are loaded -->
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
+  <a-scene physics="driver: ammo; debug: true; debugDrawMode: 1;" stats="true" vr-mode-ui="enabled: false;"
+    device-orientation-permission-ui="enabled: false"
+    renderer='antialias: true; colorManagement: true; sortObjects: false; precision: high; logarithmicDepthBuffer: false; physicallyCorrectLights: false;'
+    raycaster="objects: .clickable" cursor="rayOrigin: mouse"
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+    >
+    <a-assets>
+      <!-- Lands -->
+      <a-asset-item id="skelly" src="./assets/3dmodels/Skeleton.gltf"></a-asset-item>
+
+
+    </a-assets>
+    <!-- we use cors proxy to avoid cross-origin problems ATTENTION! you need to set up your server -->
+    <!-- Todo play with settings to get a smoother model -->
+    <a-nft type="nft" url="./assets/marker/marker" smooth="true" smoothCount="10" smoothTolerance=".01"
+      smoothThreshold="5" emitevents="true">
+      <a-box color="green" scale=" 500 50 0.01" rotation="-90 0 0" ammo-body="type: static; emitCollisionEvents: true"
+        ammo-shape></a-box>
+      <a-box color="red" scale="1 1 1" position="2 0.1 -3"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 1000" random-hex class="clickable"></a-box>
+      <a-entity id="bb" geometry="primitive: box" material="color: blue" id="bb" box-jump class="clickable"
+        scale="1 2 1" position="-2 5 -2" ammo-body="type: dynamic; emitCollisionEvents: true;"
+        ammo-shape="type: box"></a-entity>
+
+
+      <!-- <a-box id="bb" box-jump class="clickable" color="blue" scale="1 1 1" position = "-2 5 -2" ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box" ></a-box> -->
+      <a-entity class="clickable" id="skeleton" gltf-model="#skelly" scale="50 50 50" position="1 0.1 0.05"
+        rotation="-90 0 0" ammo-body="type:static ; emitCollisionEvents: true;" sprite-jump>
+      </a-entity>
+
+    </a-nft>
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
