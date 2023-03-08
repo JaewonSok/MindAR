@@ -11,5 +11,10 @@
   "devDependencies": {
     "typescript": "^4.9.3",
     "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "@c-frame/aframe-physics-system": "^4.2.2",
+    "aframe-extras": "^6.1.1",
+    "aframe-physics-system": "^4.0.2"
   }
 }

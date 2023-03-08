@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <!-- import -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!--Import A-Frame-->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
+    <!--Import A-Frame extras-->
+    <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
+    <!--Import Ammo.js physics-->
+    <script src="https://cdn.jsdelivr.net/gh/kripken/ammo.js@42760fd/builds/ammo.wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
+
+    <!-- Mobile Debugging -->
+    <script data-consolejs-channel="6e57dd1c-931c-9493-2ec1-6537451d418f"
+        src="https://remotejs.com/agent/agent.js"></script>
+
+    <!-- Game Logic -->
+    <script src="./game.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="FlyingLand_1" src="./assets/easter-island/FlyingLand_1.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_2" src="./assets/easter-island/FlyingLand_2.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_3" src="./assets/easter-island/FlyingLand_3.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_4" src="./assets/easter-island/FlyingLand_4.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_5" src="./assets/easter-island/FlyingLand_5.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_6" src="./assets/easter-island/FlyingLand_6.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_7" src="./assets/easter-island/FlyingLand_7.glb"></a-asset-item>
+        </a-assets>
+        <a-entity id="models-container"></a-entity>
+    </a-scene>
+
+    <script>
+        const currentModelContainer = document.querySelector('#current-model-container');
+        const nextModelContainer = document.querySelector('#next-model-container');
+        const models = [
+            { id: 'FlyingLand_1', position: '0 0 -5' },
+            { id: 'FlyingLand_2', position: '0 0 -10' },
+            { id: 'FlyingLand_3', position: '0 0 -15' },
+        ];
+        let currentModelIndex = 0;
+
+        function loadNextModel() {
+            const nextModelIndex = (currentModelIndex + 1) % models.length;
+            const nextModel = document.createElement('a-entity');
+            nextModel.setAttribute('gltf-model', `#${models[nextModelIndex].id}`);
+            nextModel.setAttribute('position', models[nextModelIndex].position);
+
+            nextModel.addEventListener('model-loaded', () => {
+                // Wait for the model to load before moving it into position
+                nextModelContainer.setAttribute('position', models[currentModelIndex].position);
+                nextModelContainer.setAttribute('visible', 'true');
+
+                // Swap the current and next model containers
+                const temp = currentModelContainer.getAttribute('gltf-model');
+                currentModelContainer.setAttribute('gltf-model', nextModel.getAttribute('gltf-model'));
+                currentModelContainer.setAttribute('position', nextModelContainer.getAttribute('position'));
+                currentModelContainer.setAttribute('visible', 'true');
+                nextModelContainer.setAttribute('gltf-model', temp);
+                nextModelContainer.setAttribute('visible', 'false');
+
+                // Update current model index
+                currentModelIndex = nextModelIndex;
+            });
+
+            nextModelContainer.appendChild(nextModel);
+        }
+
+        setInterval(() => {
+            loadNextModel();
+        }, 1000);
+    </script>
+</body>
+
+</html>

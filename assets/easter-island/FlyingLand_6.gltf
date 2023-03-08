@@ -1,0 +1,578 @@
+{
+    "asset": {
+        "generator": "FBX2glTF v0.9.7",
+        "version": "2.0"
+    },
+    "scene": 0,
+    "buffers": [
+        {
+            "byteLength": 199760,
+            "uri": "buffer.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteLength": 26544,
+            "byteOffset": 0,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteLength": 62292,
+            "byteOffset": 26544,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 62292,
+            "byteOffset": 88836,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 41528,
+            "byteOffset": 151128,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 576,
+            "byteOffset": 192656,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteLength": 672,
+            "byteOffset": 193232,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 672,
+            "byteOffset": 193904,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 448,
+            "byteOffset": 194576,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 576,
+            "byteOffset": 195024,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteLength": 672,
+            "byteOffset": 195600,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 672,
+            "byteOffset": 196272,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 448,
+            "byteOffset": 196944,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 576,
+            "byteOffset": 197392,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteLength": 672,
+            "byteOffset": 197968,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 672,
+            "byteOffset": 198640,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 448,
+            "byteOffset": 199312,
+            "target": 34962
+        }
+    ],
+    "scenes": [
+        {
+            "name": "Root Scene",
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "accessors": [
+        {
+            "componentType": 5123,
+            "type": "SCALAR",
+            "count": 13272,
+            "bufferView": 0,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5191,
+            "bufferView": 1,
+            "byteOffset": 0,
+            "min": [
+                -3.23471403121948,
+                -0.364440709352493,
+                -3.28007006645203
+            ],
+            "max": [
+                3.24123525619507,
+                5.36345434188843,
+                3.25769305229187
+            ]
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 5191,
+            "bufferView": 2,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC2",
+            "count": 5191,
+            "bufferView": 3,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5123,
+            "type": "SCALAR",
+            "count": 288,
+            "bufferView": 4,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 56,
+            "bufferView": 5,
+            "byteOffset": 0,
+            "min": [
+                -0.647006034851074,
+                -0.0279876589775085,
+                -0.521123886108398
+            ],
+            "max": [
+                0.576837539672852,
+                1.41130614280701,
+                0.542908132076263
+            ]
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 56,
+            "bufferView": 6,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC2",
+            "count": 56,
+            "bufferView": 7,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5123,
+            "type": "SCALAR",
+            "count": 288,
+            "bufferView": 8,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 56,
+            "bufferView": 9,
+            "byteOffset": 0,
+            "min": [
+                -0.647007584571838,
+                -0.027987539768219,
+                -0.521123886108398
+            ],
+            "max": [
+                0.576835989952087,
+                1.4113062620163,
+                0.542908132076263
+            ]
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 56,
+            "bufferView": 10,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC2",
+            "count": 56,
+            "bufferView": 11,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5123,
+            "type": "SCALAR",
+            "count": 288,
+            "bufferView": 12,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 56,
+            "bufferView": 13,
+            "byteOffset": 0,
+            "min": [
+                -0.647007584571838,
+                -0.027987539768219,
+                -0.521123886108398
+            ],
+            "max": [
+                0.576835989952087,
+                1.4113062620163,
+                0.542908132076263
+            ]
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC3",
+            "count": 56,
+            "bufferView": 14,
+            "byteOffset": 0
+        },
+        {
+            "componentType": 5126,
+            "type": "VEC2",
+            "count": 56,
+            "bufferView": 15,
+            "byteOffset": 0
+        }
+    ],
+    "images": [
+        {
+            "name": "base_color_texture",
+            "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+        }
+    ],
+    "samplers": [
+        {}
+    ],
+    "textures": [
+        {
+            "name": "base_color_texture",
+            "sampler": 0,
+            "source": 0
+        }
+    ],
+    "materials": [
+        {
+            "name": "Egg_House_10",
+            "alphaMode": "OPAQUE",
+            "extras": {
+                "fromFBX": {
+                    "shadingModel": "Phong",
+                    "isTruePBR": false
+                }
+            },
+            "pbrMetallicRoughness": {
+                "baseColorTexture": {
+                    "index": 0,
+                    "texCoord": 0
+                },
+                "baseColorFactor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "metallicFactor": 0.400000005960464,
+                "roughnessFactor": 0.301511347293854
+            }
+        },
+        {
+            "name": "Egg_House_04",
+            "alphaMode": "OPAQUE",
+            "extras": {
+                "fromFBX": {
+                    "shadingModel": "Phong",
+                    "isTruePBR": false
+                }
+            },
+            "pbrMetallicRoughness": {
+                "baseColorTexture": {
+                    "index": 0,
+                    "texCoord": 0
+                },
+                "baseColorFactor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "metallicFactor": 0.400000005960464,
+                "roughnessFactor": 0.301511347293854
+            }
+        },
+        {
+            "name": "Egg_House_07",
+            "alphaMode": "OPAQUE",
+            "extras": {
+                "fromFBX": {
+                    "shadingModel": "Phong",
+                    "isTruePBR": false
+                }
+            },
+            "pbrMetallicRoughness": {
+                "baseColorTexture": {
+                    "index": 0,
+                    "texCoord": 0
+                },
+                "baseColorFactor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "metallicFactor": 0.400000005960464,
+                "roughnessFactor": 0.301511347293854
+            }
+        },
+        {
+            "name": "Egg_House_06",
+            "alphaMode": "OPAQUE",
+            "extras": {
+                "fromFBX": {
+                    "shadingModel": "Phong",
+                    "isTruePBR": false
+                }
+            },
+            "pbrMetallicRoughness": {
+                "baseColorTexture": {
+                    "index": 0,
+                    "texCoord": 0
+                },
+                "baseColorFactor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "metallicFactor": 0.400000005960464,
+                "roughnessFactor": 0.301511347293854
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "Egg_House_10",
+            "primitives": [
+                {
+                    "material": 0,
+                    "mode": 4,
+                    "attributes": {
+                        "NORMAL": 2,
+                        "POSITION": 1,
+                        "TEXCOORD_0": 3
+                    },
+                    "indices": 0
+                }
+            ]
+        },
+        {
+            "name": "Shrub_04",
+            "primitives": [
+                {
+                    "material": 1,
+                    "mode": 4,
+                    "attributes": {
+                        "NORMAL": 6,
+                        "POSITION": 5,
+                        "TEXCOORD_0": 7
+                    },
+                    "indices": 4
+                }
+            ]
+        },
+        {
+            "name": "Shrub_07",
+            "primitives": [
+                {
+                    "material": 2,
+                    "mode": 4,
+                    "attributes": {
+                        "NORMAL": 10,
+                        "POSITION": 9,
+                        "TEXCOORD_0": 11
+                    },
+                    "indices": 8
+                }
+            ]
+        },
+        {
+            "name": "Shrub_06",
+            "primitives": [
+                {
+                    "material": 3,
+                    "mode": 4,
+                    "attributes": {
+                        "NORMAL": 14,
+                        "POSITION": 13,
+                        "TEXCOORD_0": 15
+                    },
+                    "indices": 12
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "RootNode",
+            "translation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "FlyingLand_6",
+            "translation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                2.1855694143369e-08,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.00000023841858,
+                1.00000023841858
+            ],
+            "children": [
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        {
+            "name": "Egg_House_10",
+            "translation": [
+                -0.169999971985817,
+                0.349999964237213,
+                -0.0799999907612801
+            ],
+            "rotation": [
+                2.98022850842017e-08,
+                0.984899163246155,
+                2.08616214081303e-07,
+                -0.173128947615623
+            ],
+            "scale": [
+                1.02234899997711,
+                1.0990252494812,
+                1.0223491191864
+            ],
+            "mesh": 0
+        },
+        {
+            "name": "Shrub_04",
+            "translation": [
+                2.91999959945679,
+                0.0299999974668026,
+                1.21999990940094
+            ],
+            "rotation": [
+                2.18556888142984e-08,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                0.793964803218842,
+                0.793964922428131,
+                0.793964922428131
+            ],
+            "mesh": 1
+        },
+        {
+            "name": "Shrub_07",
+            "translation": [
+                -3.41999959945679,
+                0.0299999993294477,
+                0.179999992251396
+            ],
+            "rotation": [
+                2.1855694143369e-08,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                0.839999914169312,
+                0.839999914169312,
+                0.839999914169312
+            ],
+            "mesh": 2
+        },
+        {
+            "name": "Shrub_06",
+            "translation": [
+                2.81999969482422,
+                0.0199999995529652,
+                -1.58999979496002
+            ],
+            "rotation": [
+                1.89731785837921e-08,
+                0.496369332075119,
+                1.08484883298843e-08,
+                0.868111431598663
+            ],
+            "scale": [
+                0.96502298116684,
+                0.96502286195755,
+                0.965022921562195
+            ],
+            "mesh": 3
+        }
+    ]
+}
