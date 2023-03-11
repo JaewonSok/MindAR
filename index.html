@@ -1,73 +1,156 @@
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,maximum-scale=1">
-<!-- Must be run on a secure HTTPS Server -- Github pages?-->
-<!-- import aframe and then ar.js with image tracking / location based features -->
-<!-- A-Frame -->
-<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-<!-- AR.js -->
-<!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script> -->
-<!-- Extras -->
-<!-- <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script> -->
+<html>
 
-<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+<head>
+    <!-- import -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!--Import A-Frame-->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
 
-<!-- Ammo Physics -->
-<script src="https://cdn.jsdelivr.net/gh/MozillaReality/ammo.js@8bbc0ea/builds/ammo.wasm.js"></script>
+    <!--Import A-Frame extras-->
+    <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
+    <!--Import Ammo.js physics-->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/kripken/ammo.js@42760fd/builds/ammo.wasm.js"></script> -->
+    <!-- <script src="http://kripken.github.io/ammo.js/builds/ammo.wasm.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/MozillaReality/ammo.js@8bbc0ea/builds/ammo.wasm.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system/dist/aframe-physics-system.min.js"></script> -->
 
-<!-- Cannon Physics -->
-<!-- <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script> -->
+    <!-- Mobile Debugging -->
+    <script data-consolejs-channel="6e57dd1c-931c-9493-2ec1-6537451d418f"
+        src="https://remotejs.com/agent/agent.js"></script>
+    <!-- A-Frame Physics -->
+    <script src="./dist/aframe-physics-system.js"></script>
+    <!-- Game Logic -->
+    <script src="./game.js"></script>
 
-<!-- A-Frame Physics -->
-<script src="./dist/aframe-physics-system.js"></script>
-
-<!-- Remote Debugging -->
-<script data-consolejs-channel="43507319-75a7-36fc-99e5-32f3cedabbb7"
-    src="https://remotejs.com/agent/agent.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-
-<!-- Game Logic -->
-<script src="./game.js"></script>
-
+</head>
 
 <body>
 
-    <a-scene physics="driver: ammo;  debug: true; debugDrawMode: 1;" stats="true"
-        device-orientation-permission-ui="enabled: false"
+    <a-scene mindar-image="imageTargetSrc: ./assets/easter-marker/targets.mind" color-space="sRGB"
+        vr-mode-ui="enabled: false" physics="driver: ammo;  debug: true;"
         renderer='antialias: true; colorManagement: true; sortObjects: false; precision: high; logarithmicDepthBuffer: false; physicallyCorrectLights: false;'
-        raycaster="objects: .clickable" cursor="rayOrigin: mouse" a-mouse-cursor>
-
-        <a-box id="backboard" position="0 2 -5" width="1" height="1" depth="0.2"
-            ammo-body="type: static; emitCollisionEvents: true;" ammo-shape="type: box"
-            material="color: tomato;"></a-box>
-        <a-sphere id="ball" class="clickable" position="0 0.1 -2" radius="0.15" material="color: cyan;" foo></a-sphere>
-
-
-        <!-- <a-entity camera look-controls wasd-controls position="0 1.6 3"><a-camera look-controls="pointerLockEnabled: true"></a-camera></a-entity> -->
-
-
-        <a-assets>
-            <!-- Lands -->
+        device-orientation-permission-ui="enabled: false" wait-for-marker>
+        <a-assets id="assets">
+            <img id="card" src="./assets/easter-marker/GeoAR_Easter_easter_2-01.png" />
+            <a-asset-item id="bunny" src="./assets/3dmodels/Bunny_01.gltf"></a-asset-item>
             <a-asset-item id="skelly" src="./assets/3dmodels/Skeleton.gltf"></a-asset-item>
+            <a-asset-item id="FlyingLand_1" src="./assets/easter-island/FlyingLand_1.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_2" src="./assets/easter-island/FlyingLand_2.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_3" src="./assets/easter-island/FlyingLand_3.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_4" src="./assets/easter-island/FlyingLand_4.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_5" src="./assets/easter-island/FlyingLand_5.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_6" src="./assets/easter-island/FlyingLand_6.glb"></a-asset-item>
+            <a-asset-item id="FlyingLand_7" src="./assets/easter-island/FlyingLand_7.glb"></a-asset-item>
         </a-assets>
-        <!-- we use cors proxy to avoid cross-origin problems ATTENTION ammo-shape="mesh"! you need to set up your server -->
-        <!--  ammo-shape="mesh" -->
-        <a-box color="green" scale=" 50 50 0.01" rotation="-90 0 0" ammo-body="type: static; emitCollisionEvents: true"
-            ammo-shape="type: box"></a-box>
-        <a-box color="red" scale="1 1 1" position="2 0.1 -3"
-            animation="property: rotation; to: 0 360 0; loop: true; dur: 1000" random-hex class="clickable"></a-box>
-        <a-entity id="bb" geometry="primitive: box" material="color: blue" id="bb" box-jump class="clickable"
-            scale="1 2 1" position="-2 5 -2" ammo-body="type: dynamic; emitCollisionEvents: true;"
-            ammo-shape="type: box"></a-entity>
+
+        <a-camera mousecontrol id="camera" position="0 0 10" look-controls="enabled: false"
+            cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
 
 
-        <a-box id="bb" box-jump class="clickable" color="blue" scale="1 1 1" position="-2 5 -2"
-            ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"></a-box>
+        <a-entity id="marker" mindar-image-target="targetIndex: 0">
+            <!--Loading bunny model-->
+            <a-gltf-model rotation="0 0 0 " position="0 -1 0.1" scale="0.2 0.2 0.2 " src="#bunny"
+                animation="property: position; to: 0 0 0; dur: 1000; easing: easeInOutQuad; loop: false; dir: alternate">
+                <!--Loading skelly-->
 
-        <a-entity class="clickable" id="skeleton" gltf-model="#skelly" scale="1 1 1" position="1 2 -3" rotation="0 0 0"
-            ammo-body="type: dynamic ; emitCollisionEvents: true;"
-            ammo-shape="  type: box; fit: manual; halfExtents: 0.5 1 0.5;" swipeable>
+                <a-entity id="initial-model" gltf-model="#FlyingLand_2" scale="1 -2 1" position="0 0 0"
+                    ammo-body="type: static; emitCollisionEvents: true;" rotation="180 0 0"></a-entity>
+                <a-entity class="clickable" id="skeleton" gltf-model="#skelly" scale="1 1 1" position="0 3 0"
+                    rotation="0 0 0" ammo-body="type: dynamic; emitCollisionEvents: true;"
+                    ammo-shape="  type: cylinder; fit: manual; halfExtents: 0.5 1 0.5;" enable-physics-on-marker-found
+                    sprite-jump>
+                </a-entity>
+                <!-- <a-entity id="model-container" scale="1 -2 1" position="0 0 0" rotation="180 0 0"></a-entity> -->
         </a-entity>
 
     </a-scene>
+
+    <script>
+
+        // // // Define an array with the IDs of the models
+        // const modelIds = ['FlyingLand_1', 'FlyingLand_2', 'FlyingLand_3', 'FlyingLand_4', 'FlyingLand_5', 'FlyingLand_6', 'FlyingLand_7'];
+
+        // // Shuffle the array using Fisher-Yates algorithm
+        // function shuffle(array) {
+        //     for (let i = array.length - 1; i > 0; i--) {
+        //         const j = Math.floor(Math.random() * (i + 1));
+        //         [array[i], array[j]] = [array[j], array[i]];
+        //     }
+        //     console.log("Shuffle")
+        // }
+
+        // // Display the models in a random order
+        // let currentIndex = 0;
+        // function displayNextModel() {
+        //     //const modelContainer = document.querySelector('#model-container');
+        //     const initialModelEl = document.querySelector('#initial-model');
+        //     const currentModelId = modelIds[currentIndex];
+        //     const currentModel = document.createElement('a-entity');
+        //     const initialPosition = initialModelEl.getAttribute('position');
+        //     const initialRotation = initialModelEl.getAttribute('rotation');
+        //     const initialScale = initialModelEl.getAttribute('scale');
+        //     // currentModel.setAttribute('gltf-model', `#${currentModelId}`);
+        //     // initialModelEl.appendChild(currentModel);
+        //     currentIndex = (currentIndex + 1) % modelIds.length;
+        //     const newPosition = {
+        //         x: initialPosition.x + 5, // Spawn model 2 units to the right
+        //         y: initialPosition.y,
+        //         z: initialPosition.z
+        //     };
+
+        //     const newRotation = initialRotation;
+        //     // Create the new model
+        //     const newModelEl = document.createElement('a-entity');
+        //     newModelEl.setAttribute('position', newPosition);
+        //     newModelEl.setAttribute('rotation', newRotation);
+        //     newModelEl.setAttribute('scale', initialScale);
+        //     newModelEl.setAttribute('gltf-model', `#${currentModelId}`);
+        //     console.log("Load next");
+        //     shuffle(modelIds);
+        // }
+
+        // // Shuffle the array initially and start displaying the models
+        // shuffle(modelIds);
+        // displayNextModel();
+        // setInterval(displayNextModel, 2000); // Change the model every 5 seconds
+
+        // function spawnModel() {
+        //     // Get the position and rotation of the initial model
+        //     const initialModelEl = document.querySelector('#initial-model');
+        //     const initialPosition = initialModelEl.getAttribute('position');
+        //     const initialRotation = initialModelEl.getAttribute('rotation');
+
+        //     // Calculate the position and rotation of the new model
+        //     const newPosition = {
+        //         x: initialPosition.x + 5, // Spawn model 2 units to the right
+        //         y: initialPosition.y,
+        //         z: initialPosition.z
+        //     };
+        //     const newRotation = initialRotation;
+
+        //     shuffle(modelIds);
+        //     const currentModelId = modelIds[currentIndex];
+        //     // Create the new model
+        //     const newModelEl = document.createElement('a-entity');
+        //     newModelEl.setAttribute('position', newPosition);
+        //     newModelEl.setAttribute('rotation', newRotation);
+        //     newModelEl.setAttribute('gltf-model', `#${currentModelId}`);
+
+        //     // Append the new model to the scene
+        //     const sceneEl = document.querySelector('a-scene');
+        //     sceneEl.appendChild(newModelEl);
+        // }
+
+        // // Call the spawnModel function every 2 seconds
+        // setInterval(spawnModel, 2000);
+    </script>
+
+
 </body>
+
+</html>
