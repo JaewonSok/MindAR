@@ -1,7 +1,6 @@
 console.log("game.js loaded");
 var islandTimer;
 
-
 AFRAME.registerComponent("box-jump", {
   init: function () {
     // when clicked attach the body and the shape, and apply the impulse
@@ -36,6 +35,24 @@ AFRAME.registerComponent("box-jump", {
     })
   }
 })
+
+AFRAME.registerComponent('enable-physics-on-marker-found', {
+  init: function () {
+    let markerDetected = false;
+    const ammoBody = this.el.getAttribute('ammo-body');
+
+    // Listen for markerFound event
+    this.el.addEventListener('markerFound', () => {
+      markerDetected = true;
+      // Set the enabled property of ammo-body to true
+      ammoBody.enabled = true;
+    });
+
+    // Disable ammo-body component initially
+    ammoBody.enabled = false;
+  }
+});
+
 AFRAME.registerComponent("sprite-jump", {
   init: function () {
     // when clicked attach the body and the shape, and apply the impulse
@@ -55,12 +72,16 @@ AFRAME.registerComponent("sprite-jump", {
 
       });
       console.log("ammo-shape set to hull");
-      const force = new Ammo.btVector3(0, 5, 0);
+      const force = new Ammo.btVector3(0, 10, 0);
       console.log("force set to 0, 5, 0");
       const pos = new Ammo.btVector3(skeleton.object3D.position.x, skeleton.object3D.position.y, skeleton.object3D.position.z);
       console.log("position set to skeleton position");
-      skeleton.body.applyImpulse(force);
+      skeleton.body.setLinearVelocity(force);
       console.log("impulse applied");
+      Ammo.destroy(force);
+      console.log("force destroyed");
+      Ammo.destroy(pos);
+      console.log("position destroyed");
     })
   }
 })
@@ -100,3 +121,17 @@ AFRAME.registerComponent("foo", {
     })
   }
 })
+AFRAME.registerComponent('swipeable', {
+  init: function () {
+    var el = this.el;
+    var swipe = new Hammer(el);
+
+    swipe.on('swipeleft', function () {
+      console.log('Swipe left!');
+    });
+
+    swipe.on('swiperight', function () {
+      console.log('Swipe right!');
+    });
+  }
+});
