@@ -15,6 +15,7 @@
   "dependencies": {
     "@c-frame/aframe-physics-system": "^4.2.2",
     "aframe-extras": "^6.1.1",
-    "aframe-physics-system": "^4.0.2"
+    "aframe-physics-system": "^4.0.2",
+    "cannon": "^0.6.2"
   }
 }

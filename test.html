@@ -6,27 +6,105 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <!--Import A-Frame-->
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.1/dist/mindar-image-aframe.prod.js"></script>
+
     <!--Import A-Frame extras-->
-    <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script>
+    <!-- <script src="node_modules/aframe-extras/dist/aframe-extras.min.js"></script> -->
     <!--Import Ammo.js physics-->
-    <script src="https://cdn.jsdelivr.net/gh/kripken/ammo.js@42760fd/builds/ammo.wasm.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/kripken/ammo.js@42760fd/builds/ammo.wasm.js"></script> -->
+    <!-- <script src="http://kripken.github.io/ammo.js/builds/ammo.wasm.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/MozillaReality/ammo.js@8bbc0ea/builds/ammo.wasm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
 
     <!-- Mobile Debugging -->
     <script data-consolejs-channel="6e57dd1c-931c-9493-2ec1-6537451d418f"
         src="https://remotejs.com/agent/agent.js"></script>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/webxr-polyfill@2.4.0/dist/webxr-polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webvr-polyfill@0.9.53/build/webvr-polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@webxr/device-detector@1.2.2/dist/webxr-device-detector.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/3.3.2/aframe/build/aframe-ar.js"></script>
+    <!-- A-Frame Physics -->
+    <!-- <script src="./dist/aframe-physics-system.js"></script> -->
     <!-- Game Logic -->
     <script src="./game.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sceneEl = document.querySelector('a-scene');
+            const arSystem = sceneEl.systems["mindar-image-system"];
+            const exampleTarget = document.querySelector('#marker');
+            const examplePlane = document.querySelector('#land2');
+            const startButton = document.querySelector("#example-start-button");
+            const stopButton = document.querySelector("#example-stop-button");
+            const pauseButton = document.querySelector("#example-pause-button");
+            const pauseKeepVideoButton = document.querySelector("#example-pause-keep-video-button");
+            const unpauseButton = document.querySelector("#example-unpause-button");
+            startButton.addEventListener('click', () => {
+                console.log("start");
+                arSystem.start(); // start AR 
+            });
+            stopButton.addEventListener('click', () => {
+                arSystem.stop(); // stop AR 
+            });
+            pauseButton.addEventListener('click', () => {
+                arSystem.pause(); // pause AR, keep video feed
+            });
+            pauseKeepVideoButton.addEventListener('click', () => {
+                arSystem.pause(true); // pause AR and video
+            });
+            unpauseButton.addEventListener('click', () => {
+                arSystem.unpause(); // unpause AR and video
+            });
+            // arReady event triggered when ready
+            sceneEl.addEventListener("arReady", (event) => {
+                // console.log("MindAR is ready")
+            });
+            // arError event triggered when something went wrong. Mostly browser compatbility issue
+            sceneEl.addEventListener("arError", (event) => {
+                // console.log("MindAR failed to start")
+            });
+            // detect target found
+            // exampleTarget.addEventListener("targetFound", event => {
+            //     console.log("target found");
+            // });
+            // detect target lost
+            // exampleTarget.addEventListener("targetLost", event => {
+            //     console.log("target lost");
+            // });
+            // detect click event
+            examplePlane.addEventListener("click", event => {
+                console.log("plane click");
+            });
+        });
+    </script>
+
 </head>
 
 <body>
-    <a-scene>
-        <a-assets>
+    <div style="position: absolute; z-index: 1000">
+        <button id="example-start-button">Start</button>
+        <button id="example-pause-button">Pause</button>
+        <button id="example-pause-keep-video-button">Pause (keep video)</button>
+        <button id="example-unpause-button">UnPause</button>
+        <button id="example-stop-button">Stop</button>
+    </div>
+    <!--   <a-scene mindar-image="imageTargetSrc: ./assets/easter-marker/targets.mind" color-space="sRGB"
+        vr-mode-ui="enabled: false" physics="driver: ammo; debug: true; debugDrawMode: 1;"
+        renderer="colorManagement: true; sortObjects: false; precision: high; logarithmicDepthBuffer: false; physicallyCorrectLights: false;"
+        raycaster="objects: .clickable" cursor="rayOrigin: mouse" a-mouse-cursor> -->
+    <a-scene webxr="overlayElement:#dom-overlay;" color-space="sRGB" vr-mode-ui="enabled: false"
+        physics="driver: ammo; debug: true; debugDrawMode: 1;"
+        renderer="colorManagement: true; sortObjects: false; precision: high; logarithmicDepthBuffer: false; physicallyCorrectLights: false;"
+        raycaster="objects: .clickable" cursor="rayOrigin: mouse" a-mouse-cursor>
+        <a-assets id="assets">
+            <img id="card" src="./assets/easter-marker/GeoAR_Easter_easter_2-01.png" />
+            <a-asset-item id="bunny" src="./assets/3dmodels/Bunny_01.gltf"></a-asset-item>
+            <a-asset-item id="skelly" src="./assets/3dmodels/Skeleton.gltf"></a-asset-item>
             <a-asset-item id="FlyingLand_1" src="./assets/easter-island/FlyingLand_1.glb"></a-asset-item>
             <a-asset-item id="FlyingLand_2" src="./assets/easter-island/FlyingLand_2.glb"></a-asset-item>
             <a-asset-item id="FlyingLand_3" src="./assets/easter-island/FlyingLand_3.glb"></a-asset-item>
@@ -35,49 +113,26 @@
             <a-asset-item id="FlyingLand_6" src="./assets/easter-island/FlyingLand_6.glb"></a-asset-item>
             <a-asset-item id="FlyingLand_7" src="./assets/easter-island/FlyingLand_7.glb"></a-asset-item>
         </a-assets>
-        <a-entity id="models-container"></a-entity>
+
+        <a-entity id="camera" camera look-controls position="0 1.6 0" cursor="fuse: false;"></a-entity>
+
+        </a-camera>
+
+        <a-entity id="ground" geometry="primitive: plane; width: 100; height: 100;" material="color: #CCC;"
+            position="0 -0.1 0"></a-entity>
+        <a-entity scale="0.5 0.5 0.5">
+            <a-entity class="clickable" id="skeleton" gltf-model="#skelly" position="0 0 0" rotation="0 0 0"
+                ammo-body="type: static ; mass: 1;" sprite-jump>
+            </a-entity>
+        </a-entity>
+
+
+        <a-entity id="land2" gltf-model="#FlyingLand_2" scale="0.3 0.3 0.3" position="0 0 0" rotation="0 0 0"
+            ammo-body="type: static ; mass: 0" ammo-shape="type: box; fit: manual; halfExtents: 2 1 2;"></a-entity>
+
     </a-scene>
 
-    <script>
-        const currentModelContainer = document.querySelector('#current-model-container');
-        const nextModelContainer = document.querySelector('#next-model-container');
-        const models = [
-            { id: 'FlyingLand_1', position: '0 0 -5' },
-            { id: 'FlyingLand_2', position: '0 0 -10' },
-            { id: 'FlyingLand_3', position: '0 0 -15' },
-        ];
-        let currentModelIndex = 0;
 
-        function loadNextModel() {
-            const nextModelIndex = (currentModelIndex + 1) % models.length;
-            const nextModel = document.createElement('a-entity');
-            nextModel.setAttribute('gltf-model', `#${models[nextModelIndex].id}`);
-            nextModel.setAttribute('position', models[nextModelIndex].position);
-
-            nextModel.addEventListener('model-loaded', () => {
-                // Wait for the model to load before moving it into position
-                nextModelContainer.setAttribute('position', models[currentModelIndex].position);
-                nextModelContainer.setAttribute('visible', 'true');
-
-                // Swap the current and next model containers
-                const temp = currentModelContainer.getAttribute('gltf-model');
-                currentModelContainer.setAttribute('gltf-model', nextModel.getAttribute('gltf-model'));
-                currentModelContainer.setAttribute('position', nextModelContainer.getAttribute('position'));
-                currentModelContainer.setAttribute('visible', 'true');
-                nextModelContainer.setAttribute('gltf-model', temp);
-                nextModelContainer.setAttribute('visible', 'false');
-
-                // Update current model index
-                currentModelIndex = nextModelIndex;
-            });
-
-            nextModelContainer.appendChild(nextModel);
-        }
-
-        setInterval(() => {
-            loadNextModel();
-        }, 1000);
-    </script>
 </body>
 
 </html>

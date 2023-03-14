@@ -1,5 +1,6 @@
 console.log("game.js loaded");
 var islandTimer;
+var speed = 0.1;
 
 AFRAME.registerComponent("box-jump", {
   init: function () {
@@ -34,18 +35,19 @@ AFRAME.registerComponent("box-jump", {
 
     })
   }
-})
+});
+
 
 AFRAME.registerComponent('enable-physics-on-marker-found', {
   init: function () {
     let markerDetected = false;
     const ammoBody = this.el.getAttribute('ammo-body');
-
     // Listen for markerFound event
-    this.el.addEventListener('markerFound', () => {
+    this.el.addEventListener('targetFound', () => {
       markerDetected = true;
       // Set the enabled property of ammo-body to true
       ammoBody.enabled = true;
+      console.log("Physics enabled for skelly");
     });
 
     // Disable ammo-body component initially
@@ -53,38 +55,56 @@ AFRAME.registerComponent('enable-physics-on-marker-found', {
   }
 });
 
+// AFRAME.registerComponent("sprite-jump", {
+//   init: function () {
+//     // when clicked attach the body and the shape, and apply the impulse
+//     this.el.addEventListener("click", evt => {
+//       console.log("Sprite clicked");
+//       this.el.setAttribute("body", {
+//         type: "dynamic"
+//       });
+//       this.el.body.setActivationState(1);
+//       this.el.setAttribute("shape_main", {
+//         type: "cylinder",
+//         radius: 0.5,
+//         height: 2,
+//         offset: { x: 0, y: 1, z: 0 }
+
+
+//       });
+//       const force = new CANNON.Vec3(0, 5, 0);
+//       this.el.body.applyImpulse(force, this.el.body.position);
+
+//     })
+//   }
+// });
+
 AFRAME.registerComponent("sprite-jump", {
   init: function () {
     // when clicked attach the body and the shape, and apply the impulse
     this.el.addEventListener("click", evt => {
-      console.log("sprite clicked");
+      console.log("Sprite clicked");
       this.el.setAttribute("ammo-body", {
         type: "dynamic"
       });
       this.el.body.setActivationState(1);
-      console.log("ammo-body set to dynamic");
       this.el.setAttribute("ammo-shape", {
         type: "cylinder",
         fit: "manual",
-        halfExtents: { x: 1, y: 1, z: 1 },
+        halfExtents: { x: 0.5, y: 1, z: 0.5 },
         offset: { x: 0, y: 1, z: 0 }
 
 
       });
-      console.log("ammo-shape set to hull");
-      const force = new Ammo.btVector3(0, 10, 0);
-      console.log("force set to 0, 5, 0");
+      const force = new Ammo.btVector3(0, 5, 0);
       const pos = new Ammo.btVector3(skeleton.object3D.position.x, skeleton.object3D.position.y, skeleton.object3D.position.z);
-      console.log("position set to skeleton position");
       skeleton.body.setLinearVelocity(force);
-      console.log("impulse applied");
       Ammo.destroy(force);
-      console.log("force destroyed");
       Ammo.destroy(pos);
-      console.log("position destroyed");
+
     })
   }
-})
+});
 AFRAME.registerComponent("random-hex", {
   init: function () {
     this.el.addEventListener("click", evt => {
@@ -120,18 +140,17 @@ AFRAME.registerComponent("foo", {
       document.querySelector("#backboard").setAttribute("color", "green");
     })
   }
-})
-AFRAME.registerComponent('swipeable', {
-  init: function () {
-    var el = this.el;
-    var swipe = new Hammer(el);
+});
 
-    swipe.on('swipeleft', function () {
-      console.log('Swipe left!');
-    });
 
-    swipe.on('swiperight', function () {
-      console.log('Swipe right!');
+
+AFRAME.registerComponent('ammo-restitution', {
+  schema: { default: 0.5 },
+  init() {
+    const el = this.el;
+    const restitution = this.data;
+    el.addEventListener('body-loaded', function () {
+      el.body.setRestitution(restitution);
     });
   }
 });

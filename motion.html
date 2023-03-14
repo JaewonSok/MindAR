@@ -5,10 +5,7 @@
 <!-- import aframe and then ar.js with image tracking / location based features -->
 <!-- A-Frame -->
 <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-<!-- AR.js -->
-<!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script> -->
-<!-- Extras -->
-<!-- <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
 
 <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
 
@@ -33,7 +30,7 @@
 <body>
 
     <a-scene physics="driver: ammo;  debug: true; debugDrawMode: 1;" stats="true"
-        device-orientation-permission-ui="enabled: false"
+        device-orientation-permission-ui="enabled: false" vr-mode-ui="enabled: true"
         renderer='antialias: true; colorManagement: true; sortObjects: false; precision: high; logarithmicDepthBuffer: false; physicallyCorrectLights: false;'
         raycaster="objects: .clickable" cursor="rayOrigin: mouse" a-mouse-cursor>
 
@@ -54,8 +51,10 @@
         <!--  ammo-shape="mesh" -->
         <a-box color="green" scale=" 50 50 0.01" rotation="-90 0 0" ammo-body="type: static; emitCollisionEvents: true"
             ammo-shape="type: box"></a-box>
+
         <a-box color="red" scale="1 1 1" position="2 0.1 -3"
             animation="property: rotation; to: 0 360 0; loop: true; dur: 1000" random-hex class="clickable"></a-box>
+
         <a-entity id="bb" geometry="primitive: box" material="color: blue" id="bb" box-jump class="clickable"
             scale="1 2 1" position="-2 5 -2" ammo-body="type: dynamic; emitCollisionEvents: true;"
             ammo-shape="type: box"></a-entity>
@@ -65,8 +64,8 @@
             ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"></a-box>
 
         <a-entity class="clickable" id="skeleton" gltf-model="#skelly" scale="1 1 1" position="1 2 -3" rotation="0 0 0"
-            ammo-body="type: dynamic ; emitCollisionEvents: true;"
-            ammo-shape="  type: box; fit: manual; halfExtents: 0.5 1 0.5;" swipeable>
+            ammo-body=" emitCollisionEvents: true;" ammo-shape="  type: box; fit: manual; halfExtents: 0.5 1 0.5;"
+            sprite-jump swipeable>
         </a-entity>
 
     </a-scene>
