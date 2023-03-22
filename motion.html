@@ -22,7 +22,7 @@
 <script data-consolejs-channel="43507319-75a7-36fc-99e5-32f3cedabbb7"
     src="https://remotejs.com/agent/agent.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-
+<script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
 <!-- Game Logic -->
 <script src="./game.js"></script>
 
@@ -59,13 +59,22 @@
             scale="1 2 1" position="-2 5 -2" ammo-body="type: dynamic; emitCollisionEvents: true;"
             ammo-shape="type: box"></a-entity>
 
+        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"
+            event-set__enter="_event: mouseenter; color: #8FF7FF"
+            event-set__leave="_event: mouseleave; color: #4CC3D9"></a-box>
+
 
         <a-box id="bb" box-jump class="clickable" color="blue" scale="1 1 1" position="-2 5 -2"
             ammo-body="type: dynamic; emitCollisionEvents: true;" ammo-shape="type: box"></a-box>
 
-        <a-entity class="clickable" id="skeleton" gltf-model="#skelly" scale="1 1 1" position="1 2 -3" rotation="0 0 0"
+        <!-- <a-entity class="clickable" id="skeleton" gltf-model="#skelly" scale="1 1 1" position="1 2 -3" rotation="0 0 0"
             ammo-body=" emitCollisionEvents: true;" ammo-shape="  type: box; fit: manual; halfExtents: 0.5 1 0.5;"
-            sprite-jump swipeable>
+            sprite-jump>
+        </a-entity> -->
+
+        <a-entity class="clickable" id="skeleton" gltf-model="#skelly" scale="1 1 1" position="0 0 -3" rotation="0 0 0"
+            event-set_click="_event: click; _target: #easter-bunny; position: 0 2 -3; dur: 1000; easing: easeOutQuad; animation__down: property: position; to: 0 0 0; dur: 1000; easing: easeInQuad;"
+            bunny-click>
         </a-entity>
 
     </a-scene>

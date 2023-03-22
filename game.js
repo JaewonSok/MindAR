@@ -37,24 +37,6 @@ AFRAME.registerComponent("box-jump", {
   }
 });
 
-
-AFRAME.registerComponent('enable-physics-on-marker-found', {
-  init: function () {
-    let markerDetected = false;
-    const ammoBody = this.el.getAttribute('ammo-body');
-    // Listen for markerFound event
-    this.el.addEventListener('targetFound', () => {
-      markerDetected = true;
-      // Set the enabled property of ammo-body to true
-      ammoBody.enabled = true;
-      console.log("Physics enabled for skelly");
-    });
-
-    // Disable ammo-body component initially
-    ammoBody.enabled = false;
-  }
-});
-
 // AFRAME.registerComponent("sprite-jump", {
 //   init: function () {
 //     // when clicked attach the body and the shape, and apply the impulse
@@ -96,7 +78,7 @@ AFRAME.registerComponent("sprite-jump", {
 
 
       });
-      const force = new Ammo.btVector3(0, 5, 0);
+      const force = new Ammo.btVector3(0, 2, 0);
       const pos = new Ammo.btVector3(skeleton.object3D.position.x, skeleton.object3D.position.y, skeleton.object3D.position.z);
       skeleton.body.setLinearVelocity(force);
       Ammo.destroy(force);
@@ -105,6 +87,15 @@ AFRAME.registerComponent("sprite-jump", {
     })
   }
 });
+
+AFRAME.registerComponent('bunny-click', {
+  init: function () {
+    this.el.addEventListener("click", evt => {
+      console.log("bunny clicked");
+    })
+  }
+});
+
 AFRAME.registerComponent("random-hex", {
   init: function () {
     this.el.addEventListener("click", evt => {
