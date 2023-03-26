@@ -64,3 +64,15 @@ AFRAME.registerComponent('egg-click', {
         });
     }
 });
+
+AFRAME.registerComponent('photo-click', {
+    init: function () {
+        const target = document.querySelector('#photo-button');
+        const canvas = document.createElement('canvas');
+
+        target.addEventListener('click', function (ev, target) {
+            document.querySelector('#scene').components.screenshot.capture('perspective');
+
+        });
+    }
+})
