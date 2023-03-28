@@ -93,9 +93,9 @@ AFRAME.registerComponent('photo-click', {
 
                 canvas.getContext('2d').drawImage(video, 0, parseFloat($("video").css("top")), v_width, v_height);
 
-                var imgData = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
-                canvas.getContext('2d')
-                    .drawImage(imgData, 0, 0, window_width, window_height);
+                // var imgData = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
+                // canvas.getContext('2d')
+                //     .drawImage(imgData, 0, 0, window_width, window_height);
 
                 if (window.navigator.msSaveOrOpenBlob) {
                     var blobObject = canvas.msToBlob();
