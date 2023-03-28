@@ -73,8 +73,8 @@ AFRAME.registerComponent('photo-click', {
             const target = document.querySelector('#photo-button');
 
             const video = document.querySelector("#video");
-            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-            video.srcObject = stream;
+            // let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            // video.srcObject = stream;
             //const canvas = document.querySelector('#canvas');
             target.addEventListener('click', async function (ev, target) {
                 console.log("photo button clicked");
