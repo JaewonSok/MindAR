@@ -100,10 +100,12 @@ AFRAME.registerComponent('photo-click', {
                 if (window.navigator.msSaveOrOpenBlob) {
                     var blobObject = canvas.msToBlob();
                     window.navigator.msSaveOrOpenBlob(blobObject, 'download.png');
+                    console.log("Test 1");
                 } else {
                     var a = document.createElement('a');
                     a.href = canvas.toDataURL("image/png");
                     a.download = 'download.png';
+                    console.log("Test 2");
                     a.click();
                 }
                 document.querySelector("video").play();
