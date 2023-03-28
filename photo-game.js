@@ -76,6 +76,7 @@ AFRAME.registerComponent('photo-click', {
             video.srcObject = stream;
             //const canvas = document.querySelector('#canvas');
             target.addEventListener('click', async function (ev, target) {
+                console.log("photo button clicked");
                 // document.querySelector('#scene').components.screenshot.capture('perspective');
 
                 // const canvas = document.createElement("canvas");
