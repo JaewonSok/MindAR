@@ -74,41 +74,42 @@ AFRAME.registerComponent('photo-click', {
             console.log("MindAR is ready")
             let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
             video.srcObject = stream;
+            //const canvas = document.querySelector('#canvas');
+            target.addEventListener('click', async function (ev, target) {
+                // document.querySelector('#scene').components.screenshot.capture('perspective');
+
+                // const canvas = document.createElement("canvas");
+                const canvas = document.querySelector('#canvas');
+
+                var window_width = $(window).outerWidth();
+                var window_height = $(window).outerHeight();
+                var v_width = $(video).outerWidth();
+                var v_height = $(video).outerHeight();
+
+                var a_width = document.querySelector('a-scene').components.screenshot.data.width * 0.5;
+                var a_height = document.querySelector('a-scene').components.screenshot.data.height * 0.5;
+                canvas.width = $(window).outerWidth();
+                canvas.height = $(window).outerHeight();
+
+                canvas.getContext('2d').drawImage(video, 0, parseFloat($("video").css("top")), v_width, v_height);
+
+                // var imgData = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
+                // canvas.getContext('2d')
+                //     .drawImage(imgData, 0, 0, window_width, window_height);
+
+                if (window.navigator.msSaveOrOpenBlob) {
+                    var blobObject = canvas.msToBlob();
+                    window.navigator.msSaveOrOpenBlob(blobObject, 'download.png');
+                } else {
+                    var a = document.createElement('a');
+                    a.href = canvas.toDataURL("image/png");
+                    a.download = 'download.png';
+                    a.click();
+                }
+                document.querySelector("video").play();
+            });
         });
-        //const canvas = document.querySelector('#canvas');
-        target.addEventListener('click', async function (ev, target) {
-            // document.querySelector('#scene').components.screenshot.capture('perspective');
 
-            // const canvas = document.createElement("canvas");
-            const canvas = document.querySelector('#canvas');
-
-            var window_width = $(window).outerWidth();
-            var window_height = $(window).outerHeight();
-            var v_width = $(video).outerWidth();
-            var v_height = $(video).outerHeight();
-
-            var a_width = document.querySelector('a-scene').components.screenshot.data.width * 0.5;
-            var a_height = document.querySelector('a-scene').components.screenshot.data.height * 0.5;
-            canvas.width = $(window).outerWidth();
-            canvas.height = $(window).outerHeight();
-
-            canvas.getContext('2d').drawImage(video, 0, parseFloat($("video").css("top")), v_width, v_height);
-
-            var imgData = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
-            canvas.getContext('2d')
-                .drawImage(imgData, 0, 0, window_width, window_height);
-
-            if (window.navigator.msSaveOrOpenBlob) {
-                var blobObject = canvas.msToBlob();
-                window.navigator.msSaveOrOpenBlob(blobObject, 'download.png');
-            } else {
-                var a = document.createElement('a');
-                a.href = canvas.toDataURL("image/png");
-                a.download = 'download.png';
-                a.click();
-            }
-            document.querySelector("video").play();
-        });
 
     }
 });
