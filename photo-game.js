@@ -67,11 +67,12 @@ AFRAME.registerComponent('egg-click', {
 
 AFRAME.registerComponent('photo-click', {
     init: function () {
-        const target = document.querySelector('#photo-button');
         const sceneEl = document.querySelector('a-scene');
-        const video = document.querySelector("#video");
         sceneEl.addEventListener("arReady", async (event) => {
             console.log("MindAR is ready")
+            const target = document.querySelector('#photo-button');
+
+            const video = document.querySelector("#video");
             let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
             video.srcObject = stream;
             //const canvas = document.querySelector('#canvas');
