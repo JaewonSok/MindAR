@@ -33,8 +33,6 @@
 				})
 			})
 		</script>
-
-		<script></script>
 	</head>
 
 	<body>
@@ -49,12 +47,100 @@
 				display: none;
 			"
 		></canvas>
+		<div id="start-screen" style="position: absolute; z-index: 100">
+			<img
+				src="./assets/screen-asset/Opening, Loading2.png"
+				style="
+					display: block;
+					object-fit: cover;
+					width: 100%;
+					height: 100vh;
+					margin: auto;
+				"
+			/>
+		</div>
+
+		<div id="background" style="position: relative">
+			<img
+				src="./assets/screen-asset/image _startscene_background.png"
+				style="
+					position: absolute;
+					display: block;
+					object-fit: cover;
+					width: 100%;
+					height: 100vh;
+					margin: auto;
+					z-index: 2;
+				"
+			/>
+			<div id="language" style="position: relative; z-index: 3">
+				<img
+					src="./assets/screen-asset/language/Small Text Box - with Decoration.png"
+					style="
+						position: absolute;
+						display: block;
+						object-fit: cover;
+						max-width: 75%;
+						max-height: 75vh;
+						margin: auto;
+						top: 40%;
+						left: 50%;
+						transform: translate(-45%, 10%);
+					"
+				/>
+				<img
+					src="./assets/screen-asset/language/Choose language.png"
+					style="
+						position: absolute;
+						display: block;
+						object-fit: cover;
+						max-width: 20%;
+						max-height: 20vh;
+						margin: auto;
+						top: 40%;
+						left: 50%;
+						transform: translate(-45%, 750%);
+					"
+				/>
+				<img
+					id="engButton"
+					onclick="engClick()"
+					src="./assets/screen-asset/language/Language_button_eng.png"
+					style="
+						position: absolute;
+						display: block;
+						object-fit: cover;
+						max-width: 15%;
+						max-height: 15vh;
+						margin: auto;
+						top: 40%;
+						left: 50%;
+						transform: translate(-130%, 310%);
+					"
+				/>
+				<img
+					src="assets/screen-asset/language/Language_button_de.png"
+					style="
+						position: absolute;
+						display: block;
+						object-fit: cover;
+						max-width: 15%;
+						max-height: 15vh;
+						margin: auto;
+						top: 40%;
+						left: 50%;
+						transform: translate(70%, 310%);
+					"
+				/>
+			</div>
+		</div>
 		<a-scene
 			id="scene"
-			mindar-image="imageTargetSrc: ./assets/easter-marker/photogame.mind"
+			mindar-image="imageTargetSrc: ./assets/easter-marker/photogame.mind; uiError:no; uiLoading:no; uiScanning:no"
 			color-space="sRGB"
 			vr-mode-ui="enabled: false"
 			renderer="colorManagement: true; sortObjects: false; precision: high; logarithmicDepthBuffer: false; physicallyCorrectLights: false;"
+			style="position: absolute; z-index: 1"
 		>
 			<a-assets id="assets">
 				<img
@@ -265,4 +351,15 @@
 			</a-entity>
 		</a-scene>
 	</body>
+
+	<script>
+		var startButton = document.querySelector("#start-button")
+		var startscene = document.querySelector("#start-screen")
+		var scene = document.querySelector("#scene")
+
+		scene.setAttribute("visible", "false")
+		setTimeout(() => {
+			startscene.style.display = "none"
+		}, 2000)
+	</script>
 </html>

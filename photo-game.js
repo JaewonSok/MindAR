@@ -1,3 +1,4 @@
+/*Click event for flower-button, changes visibility of flower 3D model*/
 AFRAME.registerComponent('flower-click', {
     init: function () {
         const target = document.querySelector('#flower-button');
@@ -14,6 +15,7 @@ AFRAME.registerComponent('flower-click', {
     }
 });
 
+/*Click event for bunny-button*/
 AFRAME.registerComponent('bunny-click', {
     init: function () {
         const target = document.querySelector('#bunny-button');
@@ -31,6 +33,7 @@ AFRAME.registerComponent('bunny-click', {
     }
 });
 
+/*Click event for balloon-button*/
 AFRAME.registerComponent('balloon-click', {
     init: function () {
         const target = document.querySelector('#balloon-button');
@@ -48,6 +51,7 @@ AFRAME.registerComponent('balloon-click', {
     }
 });
 
+/*Click event for egg-button*/
 AFRAME.registerComponent('egg-click', {
     init: function () {
         const target = document.querySelector('#egg-button');
@@ -65,37 +69,28 @@ AFRAME.registerComponent('egg-click', {
     }
 });
 
+/*Click event for photo-button*/
 AFRAME.registerComponent('photo-click', {
     init: function () {
         const sceneEl = document.querySelector('a-scene');
-        var UiVisible = true;
+        var UiVisible = true; //bool variable for UI visibility
+
+        //Event listener triggered when ar scene is ready
         sceneEl.addEventListener("arReady", async (event) => {
             console.log("MindAR is ready")
             const target = document.querySelector('#photo-button');
+            const video = document.getElementsByTagName("video")[0];    //Selecting the video element for screenshot
 
-            const video = document.getElementsByTagName("video")[0];
-
-            // let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-            // video.srcObject = stream;
-            //const canvas = document.querySelector('#canvas');
             target.addEventListener('click', async function (ev, target) {
                 console.log("photo button clicked");
-                // document.querySelector('#info-button').setAttribute('visible', 'false');
-                // document.querySelector('#setting-button').setAttribute('visible', 'false');
-                // document.querySelector('#flower-button').setAttribute('visible', 'false');
-                // document.querySelector('#bunny-button').setAttribute('visible', 'false');
-                // document.querySelector('#entity-photo-button').setAttribute('visible', 'false');
-                // document.querySelector('#egg-button').setAttribute('visible', 'false');
-                // document.querySelector('#balloon-button').setAttribute('visible', 'false');
-                setUIVisible(UiVisible);
+
+                setUIVisible(UiVisible);    //Hide UI
                 UiVisible = false;
 
-                setTimeout(function () {
-                    // document.querySelector('#scene').components.screenshot.capture('perspective');
-
-                    // const canvas = document.createElement("canvas");
+                setTimeout(function () {    //Screenshot taken after 1 second delay
                     const canvas = document.querySelector('#canvas');
 
+                    //Width and height of the canvas
                     var window_width = $(window).outerWidth();
                     var window_height = $(window).outerHeight();
                     var v_width = $(video).outerWidth();
@@ -106,12 +101,16 @@ AFRAME.registerComponent('photo-click', {
                     canvas.width = $(window).outerWidth();
                     canvas.height = $(window).outerHeight();
 
+                    //Render the background image from the camera
                     canvas.getContext('2d').drawImage(video, 0, parseFloat($("video").css("top")), v_width, v_height);
 
+                    //Render the A-Frame model from the scene
                     var imgData = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
                     canvas.getContext('2d')
                         .drawImage(imgData, 0, 0, window_width, window_height);
 
+
+                    //Download the screenshot using either msToBlob method or downloadAsFile method
                     if (window.navigator.msSaveOrOpenBlob) {
                         var blobObject = canvas.msToBlob();
                         window.navigator.msSaveOrOpenBlob(blobObject, 'download.png');
@@ -123,13 +122,7 @@ AFRAME.registerComponent('photo-click', {
                         console.log("Test 2");
                         a.click();
                     }
-                    // document.querySelector('#info-button').setAttribute('visible', 'true');
-                    // document.querySelector('#setting-button').setAttribute('visible', 'true');
-                    // document.querySelector('#flower-button').setAttribute('visible', 'true');
-                    // document.querySelector('#bunny-button').setAttribute('visible', 'true');
-                    // document.querySelector('#entity-photo-button').setAttribute('visible', 'true');
-                    // document.querySelector('#egg-button').setAttribute('visible', 'true');
-                    // document.querySelector('#balloon-button').setAttribute('visible', 'true');
+
                     setUIVisible(UiVisible);
                     UiVisible = true;
                 }, 1000);
@@ -138,29 +131,43 @@ AFRAME.registerComponent('photo-click', {
                 // document.querySelector("video").play();
             });
         });
-        function setUIVisible(ui) {
-            if (ui) {
-                document.querySelector('#info-button').setAttribute('visible', 'false');
-                document.querySelector('#setting-button').setAttribute('visible', 'false');
-                document.querySelector('#flower-button').setAttribute('visible', 'false');
-                document.querySelector('#bunny-button').setAttribute('visible', 'false');
-                document.querySelector('#entity-photo-button').setAttribute('visible', 'false');
-                document.querySelector('#egg-button').setAttribute('visible', 'false');
-                document.querySelector('#balloon-button').setAttribute('visible', 'false');
-
-                console.log("hiding ui elements");
-            } else {
-                document.querySelector('#info-button').setAttribute('visible', 'true');
-                document.querySelector('#setting-button').setAttribute('visible', 'true');
-                document.querySelector('#flower-button').setAttribute('visible', 'true');
-                document.querySelector('#bunny-button').setAttribute('visible', 'true');
-                document.querySelector('#entity-photo-button').setAttribute('visible', 'true');
-                document.querySelector('#egg-button').setAttribute('visible', 'true');
-                document.querySelector('#balloon-button').setAttribute('visible', 'true');
-                console.log("unhiding ui elements");
-            }
-        }
-
-
     }
 });
+
+//Function to control UI visibility
+function setUIVisible(ui) {
+    if (ui) {
+        document.querySelector('#info-button').setAttribute('visible', 'false');
+        document.querySelector('#setting-button').setAttribute('visible', 'false');
+        document.querySelector('#flower-button').setAttribute('visible', 'false');
+        document.querySelector('#bunny-button').setAttribute('visible', 'false');
+        document.querySelector('#entity-photo-button').setAttribute('visible', 'false');
+        document.querySelector('#egg-button').setAttribute('visible', 'false');
+        document.querySelector('#balloon-button').setAttribute('visible', 'false');
+
+        console.log("hiding ui elements");
+    } else {
+        document.querySelector('#info-button').setAttribute('visible', 'true');
+        document.querySelector('#setting-button').setAttribute('visible', 'true');
+        document.querySelector('#flower-button').setAttribute('visible', 'true');
+        document.querySelector('#bunny-button').setAttribute('visible', 'true');
+        document.querySelector('#entity-photo-button').setAttribute('visible', 'true');
+        document.querySelector('#egg-button').setAttribute('visible', 'true');
+        document.querySelector('#balloon-button').setAttribute('visible', 'true');
+        console.log("unhiding ui elements");
+    }
+};
+
+function engClick() {
+    var engButton = document.querySelector("#engButton");
+    var divLanguages = document.querySelector("#language");
+    var background = document.querySelector("#background");
+    var scene = document.querySelector("#scene");
+    engButton.addEventListener("click", function () {
+        console.log("eng button clicked");
+
+        background.style.display = "none";
+        divLanguages.style.display = "none";
+        scene.setAttribute("visible", "true");
+    })
+};
