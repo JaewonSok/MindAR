@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transparent Page with Buttons</title>
     <style>
-
         body,
         html {
             width: 100%;
@@ -49,6 +48,15 @@
             top: 2vh;
             right: 2vw;
         }
+
+        .photo-game-button {
+            width: auto;
+            height: 9vh;
+            border: none;
+            padding: 0;
+            position: absolute;
+            top: 78vh;
+        }
     </style>
 </head>
 
@@ -70,10 +78,8 @@
                                 top: 40%;
                                 left: 12%;
                                 transform: translate(0%, 100%);
-                            " /> -->
 
-            <img id="flower-button" onclick="flowerButtonClick()"
-                src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" style="
+
                                 position: absolute;
                                 display: block;
                                 object-fit: cover;
@@ -83,55 +89,34 @@
                                 top: 40%;
                                 left: 12%;
                                 transform: translate(50%, 850%);
+                            " /> -->
+
+            <img id="flower-button" onclick="flowerButtonClick()"
+                src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" class="photo-game-button" style="
+                                left: 30vh;
                             " />
             <img id="bunny-button" onclick="bunnyButtonClick()"
-                src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" style="
-                                position: absolute;
-                                display: block;
-                                object-fit: cover;
-                                max-width: 10%;
-                                max-height: 10vh;
-                                margin: auto;
-                                top: 40%;
-                                left: 27%;
-                                transform: translate(50%, 850%);
+                src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" class="photo-game-button" style="
+                                left: 60vh;
                             " />
             <img id="balloon-button" onclick="balloonButtonClick()"
-                src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" style="
-                                position: absolute;
-                                display: block;
-                                object-fit: cover;
-                                max-width: 10%;
-                                max-height: 10vh;
-                                margin: auto;
-                                top: 40%;
-                                left: 53%;
-                                transform: translate(50%, 850%);
+                src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" class="photo-game-button" style="
+                                right: 60vh;
                             " />
             <img id="egg-button" onclick="eggButtonClick()"
-                src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" style="
-                                position: absolute;
-                                display: block;
-                                object-fit: cover;
-                                max-width: 10%;
-                                max-height: 10vh;
-                                margin: auto;
-                                top: 40%;
-                                left: 68%;
-                                transform: translate(50%, 850%);
+                src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" class="photo-game-button" style="
+                                right: 30vh;
                             " />
 
             <img id="photo-button" onclick="takePhoto()" src="/src/assets/screen-asset/photo-game-UI/Button_Square.png"
                 style="
+                                width: auto;
+                                height: 15vh;
+                                border: none;
+                                padding: 0;
                                 position: absolute;
-                                display: block;
-                                object-fit: cover;
-                                max-width: 17%;
-                                max-height: 17vh;
-                                margin: auto;
-                                top: 40%;
-                                left: 43%;
-                                transform: translate(50%, 430%);
+                                top: 74vh;
+                                left: 95vh;
                             " />
         </div>
     </div>
