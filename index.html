@@ -31,9 +31,25 @@
     crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="./src/styles/styles.css">
+  <style>
+    body {
+      min-height: 540px;
+    }
+
+    body[orient="portrait"] {
+      min-height: 540px;
+    }
+
+    body[orient="landscape"] {
+      min-height: 400px;
+    }
+  </style>
 </head>
 
-<body>
+<body onload="setTimeout(function () {
+  // Hide the address bar!
+  window.scrollTo(0, 1);
+}, 10);">
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -53,11 +69,6 @@
         loadPage('../src/views/blank.html', 'overlay');
         hideModel();
       });
-
-      setTimeout(function () {
-        // Hide the address bar!
-        window.scrollTo(0, 1);
-      }, 0);
     })
   </script>
   <div id=pg>
