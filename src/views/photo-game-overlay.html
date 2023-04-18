@@ -58,6 +58,17 @@
             position: absolute;
             top: 68vh;
         }
+
+        .button-text {
+            position: absolute;
+            top: 70vh;
+            z-index: 1;
+            color: rgb(255, 255, 255);
+            font-size: 3vh;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Paytone One', sans-serif;
+        }
     </style>
 </head>
 
@@ -74,18 +85,25 @@
                 src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" class="photo-game-button" style="
                                 left: 30vh;
                             " />
+            <span class="button-text" style="left: 17vw;">Flowers</span>
+
             <img id="bunny-button" onclick="bunnyButtonClick()"
                 src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" class="photo-game-button" style="
                                 left: 60vh;
                             " />
+            <span class="button-text" style="left: 32.5vw;">Bunny</span>
+
             <img id="balloon-button" onclick="balloonButtonClick()"
                 src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" class="photo-game-button" style="
                                 right: 60vh;
                             " />
+            <span class="button-text" style="right: 32vw;">Balloon</span>
+
             <img id="egg-button" onclick="eggButtonClick()"
                 src="/src/assets/screen-asset/photo-game-UI/btn_Capsule_green.png" class="photo-game-button" style="
                                 right: 30vh;
                             " />
+            <span class="button-text" style="right: 18.5vw;">Egg</span>
 
             <img id="photo-button" onclick="takePhoto()" src="/src/assets/screen-asset/photo-game-UI/Button_Square.png"
                 style="
