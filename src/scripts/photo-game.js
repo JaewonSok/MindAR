@@ -271,21 +271,3 @@ function setUIVisible(ui) {
         console.log("unhiding ui elements");
     }
 };
-
-AFRAME.registerComponent('set-aspect-ratio', {
-    init: function () {
-        const sceneEl = document.querySelector('a-scene');
-        const cameraEl = sceneEl.querySelector('[camera]');
-
-        // Set the aspect ratio based on device orientation
-        const setAspectRatio = () => {
-            const aspectRatio = window.orientation === 0 ? window.innerWidth / window.innerHeight : window.innerHeight / window.innerWidth;
-            cameraEl.setAttribute('aspect', aspectRatio);
-        };
-
-        setAspectRatio();
-
-        // Listen for orientation changes and adjust the aspect ratio
-        window.addEventListener('orientationchange', setAspectRatio);
-    }
-});
